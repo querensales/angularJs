@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt" ng-app="taskListApp">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <title>Document</title>
+
+</head>
+
+<body ng-controller="taskListController">
+  <h1 style="color: orange">Task list</h1>
+  <div class="input">
+    <label>Adicionar tarefa:</label>
+    <input type="text" ng-model="novaTarefa">
+    <button ng-click="adicionarTarefa()" style="background-color:orange">Add task</button>
+
+  </div>
+  <ul style="list-style: none;">
+    <li ng-repeat="tarefa in listaDeTarefas">{{tarefa}}</li>
+  </ul>
+
+</body>
+<script>
+  var app = angular.module('taskListApp', []); // var recebe e armazena valor
+  app.controller('taskListController',
+    function ($scope) {
+      $scope.novaTarefa = '';
+      $scope.listaDeTarefas = [];
+
+
+
+      $scope.adicionarTarefa = function () { // agrupamento de código e ação
+        if ($scope.novaTarefa == '') {
+          alert('Adicione uma tarefa')
+
+          return;
+        }
+        $scope.listaDeTarefas.push($scope.novaTarefa); // empurrar registro para dentro da lista
+        $scope.novaTarefa = '';
+
+
+      }
+
+    });
+</script>
+
+</html>
